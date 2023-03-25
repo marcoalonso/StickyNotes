@@ -73,11 +73,13 @@ extension NotasViewController: UITableViewDelegate, UITableViewDataSource {
           
         let imagenBD = UIImage(data: notas[indexPath.row].imagen!)
         celda.notaLogo.image =  imagenBD
+        celda.notaLogo.layer.cornerRadius = 15
+        celda.notaLogo.layer.masksToBounds = true
         return celda
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 90
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

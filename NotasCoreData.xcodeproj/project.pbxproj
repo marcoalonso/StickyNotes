@@ -55,6 +55,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C1BCE8029CE8BE200062F5B /* Controlador */ = {
+			isa = PBXGroup;
+			children = (
+				6C877BA02920092F0079A355 /* NuevaNotaViewController.swift */,
+				6C877BA22920093B0079A355 /* EditarNotaViewController.swift */,
+				6C877B8D292003430079A355 /* NotasViewController.swift */,
+				6C17798929CC162500FB9771 /* Notas2ViewController.swift */,
+			);
+			path = Controlador;
+			sourceTree = "<group>";
+		};
+		6C1BCE8129CE8C8100062F5B /* Modelo */ = {
+			isa = PBXGroup;
+			children = (
+				6C877B92292003430079A355 /* NotasCoreData.xcdatamodeld */,
+			);
+			path = Modelo;
+			sourceTree = "<group>";
+		};
+		6C1BCE8229CE8C9400062F5B /* Vista */ = {
+			isa = PBXGroup;
+			children = (
+				6C1BCE8329CE8CD000062F5B /* Celdas */,
+				6C877B8F292003430079A355 /* Main.storyboard */,
+			);
+			path = Vista;
+			sourceTree = "<group>";
+		};
+		6C1BCE8329CE8CD000062F5B /* Celdas */ = {
+			isa = PBXGroup;
+			children = (
+				6C17798529CC14EA00FB9771 /* NotaCuadradaCell.swift */,
+				6C17798629CC14EA00FB9771 /* NotaCuadradaCell.xib */,
+				6CBF4D272992307300FCCF66 /* NotaCell.swift */,
+				6CBF4D282992307300FCCF66 /* NotaCell.xib */,
+			);
+			path = Celdas;
+			sourceTree = "<group>";
+		};
 		6C877B7D292003430079A355 = {
 			isa = PBXGroup;
 			children = (
@@ -76,19 +115,12 @@
 			children = (
 				6C877B89292003430079A355 /* AppDelegate.swift */,
 				6C877B8B292003430079A355 /* SceneDelegate.swift */,
-				6C877B8D292003430079A355 /* NotasViewController.swift */,
-				6C17798929CC162500FB9771 /* Notas2ViewController.swift */,
-				6C877B8F292003430079A355 /* Main.storyboard */,
+				6C1BCE8029CE8BE200062F5B /* Controlador */,
+				6C1BCE8229CE8C9400062F5B /* Vista */,
 				6C877B95292003480079A355 /* Assets.xcassets */,
 				6C877B97292003480079A355 /* LaunchScreen.storyboard */,
 				6C877B9A292003480079A355 /* Info.plist */,
-				6C877B92292003430079A355 /* NotasCoreData.xcdatamodeld */,
-				6C877BA02920092F0079A355 /* NuevaNotaViewController.swift */,
-				6C877BA22920093B0079A355 /* EditarNotaViewController.swift */,
-				6CBF4D272992307300FCCF66 /* NotaCell.swift */,
-				6CBF4D282992307300FCCF66 /* NotaCell.xib */,
-				6C17798529CC14EA00FB9771 /* NotaCuadradaCell.swift */,
-				6C17798629CC14EA00FB9771 /* NotaCuadradaCell.xib */,
+				6C1BCE8129CE8C8100062F5B /* Modelo */,
 				6C17798B29CC1A7600FB9771 /* UIView+Extension.swift */,
 			);
 			path = NotasCoreData;

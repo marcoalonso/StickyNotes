@@ -35,6 +35,10 @@ class EditarNotaViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc func clickImagen(){
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
@@ -57,6 +61,13 @@ class EditarNotaViewController: UIViewController, UIImagePickerControllerDelegat
         picker.dismiss(animated: true)
     }
 
+    @IBAction func cancelarButton(_ sender: UIButton) {
+        if navigationController != nil {
+            navigationController?.popToRootViewController(animated: true)
+        } else {
+            dismiss(animated: true)
+        }
+    }
     @IBAction func guardarButton(_ sender: UIButton) {
         
         recibirNota?.titulo = textoNotaEditar.text ?? ""
@@ -69,7 +80,11 @@ class EditarNotaViewController: UIViewController, UIImagePickerControllerDelegat
             print("Debug: Error al guardar en core data \(error.localizedDescription)")
         }
         
-        navigationController?.popToRootViewController(animated: true)
+        if navigationController != nil {
+            navigationController?.popToRootViewController(animated: true)
+        } else {
+            dismiss(animated: true)
+        }
     }
     
 }

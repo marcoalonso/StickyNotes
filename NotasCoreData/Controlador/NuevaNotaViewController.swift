@@ -39,9 +39,14 @@ class NuevaNotaViewController: UIViewController {
         present(vc, animated: true)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func guardarContexto(){
         do{
             try contexto.save()
+            print("Se guardo el contexto")
         }catch {
             print("Debug: Error al guardar en core data \(error.localizedDescription)")
         }
@@ -59,8 +64,12 @@ class NuevaNotaViewController: UIViewController {
             nuevaNota.imagen = imagenNota.image?.pngData()
             guardarContexto()
             
-            //Regresar a una pantalla anterior cuando usamos un NavController
-            navigationController?.popToRootViewController(animated: true)
+            if navigationController != nil {
+                navigationController?.popToRootViewController(animated: true)
+            } else {
+                dismiss(animated: true)
+            }
+          
         }
     }
     @IBAction func guardarButton(_ sender: Any) {
@@ -68,7 +77,11 @@ class NuevaNotaViewController: UIViewController {
     }
     
     @IBAction func cancelarButton(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+        if navigationController != nil {
+            navigationController?.popToRootViewController(animated: true)
+        } else {
+            dismiss(animated: true)
+        }
     }
     
 }
@@ -103,7 +116,6 @@ extension NuevaNotaViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         //Hacer algo
         
-        guardarNota()
         
         textField.text = ""
         //ocultar teclado
