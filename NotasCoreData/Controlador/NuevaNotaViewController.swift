@@ -3,7 +3,7 @@
 //  NotasCoreData
 //
 //  Created by Marco Alonso Rodriguez on 12/11/22.
-// https://stackoverflow.com/questions/23835093/storing-uicolor-object-in-core-data
+// https://cocoacasts.com/how-to-store-uicolor-in-core-data-persistent-store
 /// - Guardar el color como data
 
 import UIKit
@@ -145,6 +145,24 @@ class NuevaNotaViewController: UIViewController {
           
         }
     }
+    
+    @IBAction func colorButtons(_ sender: UIButton) {
+        
+        guard let color = sender.titleLabel?.text else { return }
+        switch color {
+        case "R":
+            print("Rojo")
+        case "P":
+            print("Purpura")
+        case "A":
+            print("Azul")
+        case "C":
+            print("Cafe")
+        default:
+            print("Aleatorio")
+        }
+    }
+    
     @IBAction func guardarButton(_ sender: Any) {
         guardarNota()
     }

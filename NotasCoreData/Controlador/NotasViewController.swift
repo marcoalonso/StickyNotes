@@ -49,6 +49,8 @@ class NotasViewController: UIViewController {
         }
         tablaNotas.reloadData()
     }
+    
+    
 }
 
 extension NotasViewController: UITableViewDelegate, UITableViewDataSource {

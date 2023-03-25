@@ -132,7 +132,7 @@ class Notas2ViewController: UIViewController, UICollectionViewDelegate, UICollec
     private func notePressed(cualNota: Notas, positionNote: Int){
         //Vibracion
         let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.warning)
+        generator.notificationOccurred(.success)
         
         let alerta = UIAlertController(title: "Hola", message: "¿Qué te gustaría realizar?", preferredStyle: .alert)
         let editar = UIAlertAction(title: "Editar nota", style: .default) { _ in
