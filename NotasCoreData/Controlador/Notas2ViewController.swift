@@ -7,10 +7,12 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class Notas2ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
    
     var notas2 : [Notas] = []
+    var player: AVAudioPlayer?  //Es un opcional
     
     //Conexion a la bd o al contexto
     let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -39,6 +41,7 @@ class Notas2ViewController: UIViewController, UICollectionViewDelegate, UICollec
         leerNotas()
     }
     
+    // MARK:  Read
     private func leerNotas(){
         let solicitud: NSFetchRequest<Notas> = Notas.fetchRequest()
         do{
@@ -50,7 +53,7 @@ class Notas2ViewController: UIViewController, UICollectionViewDelegate, UICollec
         notasCollection.reloadData()
     }
     
-    
+    // MARK:  Edit
     private func goEditNote(_ Nota: Notas){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "EditarNotaViewController") as! EditarNotaViewController
@@ -58,6 +61,39 @@ class Notas2ViewController: UIViewController, UICollectionViewDelegate, UICollec
         vc.modalTransitionStyle = .crossDissolve
         vc.recibirNota = Nota
         self.present(vc, animated: true)
+    }
+    
+    // MARK:  Delete
+    private func deleteNote(_ nota: Notas, position: Int) {
+        self.contexto.delete(nota)
+        self.notas2.remove(at: position)
+        do{
+            try self.contexto.save()
+        } catch {
+            print("Error al guardar contexto")
+        }
+        
+        UIView.animate(withDuration: 1, delay: 0) {
+            self.notasCollection.reloadData()
+        }
+        
+        playSound(cualNota: "drop")
+    }
+    
+    private func playSound(cualNota: String){
+        // guard - sirve para desenvoler una variable opcional
+        guard let url = Bundle.main.url(forResource: cualNota, withExtension: "wav") else {
+            return
+        }
+        
+        ///Tratar de reproducir el contenido de una url
+        do {
+            //Preparamos al reproductor con el sonido a reproducir
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.play()
+        } catch {
+            print("Error al reproducir sonido")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -88,23 +124,33 @@ class Notas2ViewController: UIViewController, UICollectionViewDelegate, UICollec
         celda.fondoNota.backgroundColor = colores[color]
         celda.didTapDotsButton = { [weak self] in
             guard let self = self else { return }
-            self.notePressed(cualNota: self.notas2[indexPath.row])
+            self.notePressed(cualNota: self.notas2[indexPath.row], positionNote: indexPath.row)
         }
         return celda
     }
     
-    private func notePressed(cualNota: Notas){
+    private func notePressed(cualNota: Notas, positionNote: Int){
+        //Vibracion
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.warning)
+        
         let alerta = UIAlertController(title: "Hola", message: "¿Qué te gustaría realizar?", preferredStyle: .alert)
         let editar = UIAlertAction(title: "Editar nota", style: .default) { _ in
             self.goEditNote(cualNota)
         }
         
         let borrar = UIAlertAction(title: "Borrar nota", style: .destructive) { _ in
-            //Do something
+            self.deleteNote(cualNota, position: positionNote)
         }
         
         let compartir = UIAlertAction(title: "Compartir nota", style: .default) { _ in
-            //Do something
+            
+            let date = cualNota.fecha ?? Date.now
+            let format = date.getFormattedDate(format: "MM-dd-yyyy HH:mm")
+            
+            let vc = UIActivityViewController(activityItems:
+                                                ["\(cualNota.titulo ?? ""), \(format)", UIImage(data: cualNota.imagen!) ?? UIImage(systemName: "heart.fill")!], applicationActivities: nil)
+            self.present(vc, animated: true)
         }
         alerta.addAction(editar)
         alerta.addAction(compartir)

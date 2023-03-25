@@ -22,6 +22,8 @@
 		6C877BA32920093B0079A355 /* EditarNotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C877BA22920093B0079A355 /* EditarNotaViewController.swift */; };
 		6CBF4D292992307300FCCF66 /* NotaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF4D272992307300FCCF66 /* NotaCell.swift */; };
 		6CBF4D2A2992307300FCCF66 /* NotaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CBF4D282992307300FCCF66 /* NotaCell.xib */; };
+		6CD6A9F429CEC0CC007903EC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD6A9F329CEC0CC007903EC /* Date+Extension.swift */; };
+		6CD6A9F629CEC2A9007903EC /* drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6CD6A9F529CEC2A9007903EC /* drop.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		6C877BA22920093B0079A355 /* EditarNotaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarNotaViewController.swift; sourceTree = "<group>"; };
 		6CBF4D272992307300FCCF66 /* NotaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotaCell.swift; sourceTree = "<group>"; };
 		6CBF4D282992307300FCCF66 /* NotaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotaCell.xib; sourceTree = "<group>"; };
+		6CD6A9F329CEC0CC007903EC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		6CD6A9F529CEC2A9007903EC /* drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drop.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 		6C877B88292003430079A355 /* NotasCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				6CD6A9F529CEC2A9007903EC /* drop.wav */,
 				6C877B89292003430079A355 /* AppDelegate.swift */,
 				6C877B8B292003430079A355 /* SceneDelegate.swift */,
 				6C1BCE8029CE8BE200062F5B /* Controlador */,
@@ -121,9 +126,18 @@
 				6C877B97292003480079A355 /* LaunchScreen.storyboard */,
 				6C877B9A292003480079A355 /* Info.plist */,
 				6C1BCE8129CE8C8100062F5B /* Modelo */,
-				6C17798B29CC1A7600FB9771 /* UIView+Extension.swift */,
+				6CD6A9F229CEC0BE007903EC /* Helpers */,
 			);
 			path = NotasCoreData;
+			sourceTree = "<group>";
+		};
+		6CD6A9F229CEC0BE007903EC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6C17798B29CC1A7600FB9771 /* UIView+Extension.swift */,
+				6CD6A9F329CEC0CC007903EC /* Date+Extension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +201,7 @@
 				6C877B99292003480079A355 /* LaunchScreen.storyboard in Resources */,
 				6C877B96292003480079A355 /* Assets.xcassets in Resources */,
 				6C17798829CC14EA00FB9771 /* NotaCuadradaCell.xib in Resources */,
+				6CD6A9F629CEC2A9007903EC /* drop.wav in Resources */,
 				6C877B91292003430079A355 /* Main.storyboard in Resources */,
 				6CBF4D2A2992307300FCCF66 /* NotaCell.xib in Resources */,
 			);
@@ -200,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C17798729CC14EA00FB9771 /* NotaCuadradaCell.swift in Sources */,
+				6CD6A9F429CEC0CC007903EC /* Date+Extension.swift in Sources */,
 				6C17798A29CC162500FB9771 /* Notas2ViewController.swift in Sources */,
 				6C877B8E292003430079A355 /* NotasViewController.swift in Sources */,
 				6C877BA32920093B0079A355 /* EditarNotaViewController.swift in Sources */,

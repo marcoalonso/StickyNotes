@@ -60,12 +60,11 @@ extension NotasViewController: UITableViewDelegate, UITableViewDataSource {
         let celda = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! NotaCell
         celda.tituloNota.text = notas[indexPath.row].titulo
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM, yyyy, hh:mm"
+        let date = notas[indexPath.row].fecha ?? Date.now
+        let format = date.getFormattedDate(format: "dd MM dd")
         
-        let dataFromAPI = dateFormatter.date(from: "\(notas[indexPath.row].fecha ?? Date.now)")
-        let date = dateFormatter.string(from: dataFromAPI ?? Date.now)
-        celda.fechaNota.text = "Fecha: \(date)"
+        celda.fechaNota.text = format
+        
         let color = Int.random(in: 0..<colores.count)
         celda.backgroundColor = colores[color]
         celda.fechaNota.textColor = .black

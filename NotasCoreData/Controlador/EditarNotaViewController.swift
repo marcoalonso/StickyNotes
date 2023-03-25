@@ -41,9 +41,25 @@ class EditarNotaViewController: UIViewController, UIImagePickerControllerDelegat
     
     @objc func clickImagen(){
         let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
         vc.delegate = self
-        present(vc, animated: true)
+        
+        let alerta = UIAlertController(title: "Seleccionar imagen", message: "¿Desde donde quieres elegir una imagen?", preferredStyle: .actionSheet)
+        let camara = UIAlertAction(title: "Camara", style: .default) { _ in
+            vc.sourceType = .camera
+            self.present(vc, animated: true)
+        }
+        
+        let galeria = UIAlertAction(title: "Galeria", style: .default) { _ in
+            vc.sourceType = .photoLibrary
+            self.present(vc, animated: true)
+        }
+        
+        alerta.addAction(camara)
+        alerta.addAction(galeria)
+        
+        present(alerta, animated: true)
+          
+        
     }
 
     
